@@ -1,0 +1,15 @@
+ order
+	in progress
+	cancelled
+	completed
+	assignned 
+	pending
+	all orders
+	assign orders
+	paid orders
+	settings
+	users
+	clients
+	Eearnings
+	payments
+	messanges
