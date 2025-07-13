@@ -34,6 +34,7 @@ public class Order  {
    private String orderStatus;
     private String paymentStatus;
     private Double Amount;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();
     @ElementCollection
     @CollectionTable(name = "order_files",

@@ -2,6 +2,7 @@ package essay.essay.controllers;
 import essay.essay.Models.Order;
 import essay.essay.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -164,5 +165,18 @@ public class OrderController {
 
         return ResponseEntity.ok(response);
     }
+
+        @GetMapping("api/filterorders")
+        public ResponseEntity<Page<Order>> getFilteredOrders(
+                @RequestParam(required = false) String orderId,
+                @RequestParam(required = false) String email,
+                @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                Pageable pageable) {
+
+            Page<Order> orders = orderRepository.findByFilters(orderId, email, startDate, endDate, pageable);
+            return ResponseEntity.ok(orders);
+        }
+
 }
 
